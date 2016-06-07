@@ -161,13 +161,40 @@ void TestBubbleSort()
 	Print(a, sizeof(a) / sizeof(a[0]));
 }
 
-
+//三数取中
+size_t GetMid(int *a, size_t left, size_t right)
+{
+	size_t mid = left + (right - left) / 2;
+	if (a[left] > a[right])
+	{
+		if (a[right] > a[mid])
+			return mid;
+		else
+		{
+			if (a[left]>a[mid])
+				return right;
+			else
+				return left;
+		}
+	}
+	//a[left]<=a[right]
+	else
+	{
+		if (a[mid] > a[left])
+			return mid;
+		else
+			return left;
+	}
+}
 //快速排序
+//挖坑法
 void QuickSort(int *a, int start,int end)
 {
 	assert(a);
 	if (start >= end)
 		return;
+	size_t mid = GetMid(a, start, end - 1);
+	swap(a[mid], a[start]);
 	//选取第一个数为key
 	int key = a[start];
 	int left = start;
@@ -194,6 +221,10 @@ void QuickSort(int *a, int start,int end)
 	QuickSort(a, start, left);
 	QuickSort(a, left + 1, end);
 }
+
+//归并排序
+//计数排序
+//基数排序
 
 void TestQuickSort()
 {

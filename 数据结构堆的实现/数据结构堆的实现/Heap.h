@@ -9,7 +9,7 @@ struct MAX
 	//重载()   通过对象的调用来实现仿函数
 	bool operator()(T s1, T s2)
 	{
-		return s1 < s2 ? true : false;
+		return s1 > s2 ? true : false;
 	}
 };
 
@@ -18,7 +18,7 @@ struct MIN
 {
 	bool operator()(T s1, T s2)
 	{
-		return s1 > s2 ? true : false;
+		return s1 < s2 ? true : false;
 	}
 };
 //给一个默认的模版参数  用来构建默认的最大堆
@@ -80,16 +80,14 @@ protected:
 		while (parent < len)
 		{
 			size_t child = parent * 2 + 1;
-			/*if (child+1 < len && _a[child] < _a[child + 1])*/
 
-			if (child + 1 < len && _type(_a[child], _a[child + 1]))
+			if (child + 1 < len && _type(_a[child+1], _a[child]))
 			{
 				child++;
 			}
-			/*if (child < len && _a[parent] < _a[child])*/
 
 			//通过仿函数使程序更加灵活
-			if (child < len && _type(_a[parent] ,_a[child]))
+			if (child < len && _type(_a[child] ,_a[parent]))
 			{
 				swap(_a[parent], _a[child]);
 			}
