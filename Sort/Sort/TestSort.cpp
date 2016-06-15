@@ -7,7 +7,7 @@ int main()
 	//TestSelectSort();
 	//TestHeapSort();
 	//TestBubbleSort();
-	TestQuickSort();
+	TestQuickSort2();
 	system("pause");
 	return 0;
 }
