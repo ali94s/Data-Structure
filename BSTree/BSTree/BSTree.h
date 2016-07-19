@@ -129,9 +129,19 @@ protected:
 		else
 		{
 			if (root->_left == NULL)
+			{
+				Node* del = root;
 				root = root->_right;
-			else if (root->_right==NULL)
+				delete del;
+				del = NULL;
+			}
+			else if (root->_right == NULL)
+			{
+				Node *del = root;
 				root = root->_left;
+				delete del;
+				del = NULL;
+			}
 			else
 			{
 				Node *leftNode = root->_right;
@@ -139,7 +149,7 @@ protected:
 					leftNode = leftNode->_left;
 				root->_key = leftNode->_key;
 				root->_value = leftNode->_value;
-				_Remove(root->_right, root->_value);
+				_RemoveR(root->_right, root->_key);
 			}
 		}
 		return true;
